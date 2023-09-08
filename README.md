@@ -1,5 +1,5 @@
 # CSE 214 Java code
-Semester: *Spring 2023*  
+Semester: *Fall 2023*  
 Instructor: *Prof. Ritwik Banerjee*  
 Course: *CSE 214, Section 02*
 
