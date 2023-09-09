@@ -4,14 +4,33 @@ public class Main {
         LinkedList<String> strll = new LinkedList<>(strs);
 
         strll.remove(4);
-        strll.insert("A", 4);
-        strll.append("Z");
+        strll.add(4, "A");
+        strll.add("Z");
 
         System.out.printf("%d\n", strll.indexOf("A"));
+        printLinkedList(strll);
+        printLinkedListWithIterator(strll);
 
-        var strarr = strll.toArray();
-        for (var e : strarr) {
-            System.out.printf("%s ", e);
+        var subll = strll.subList(2, 5);
+        subll.set(1, "R");
+        printLinkedList(subll);
+        printLinkedListWithIterator(subll);
+        printLinkedList(strll);
+        printLinkedListWithIterator(strll);
+    }
+
+    public static <T> void printLinkedList(LinkedList<T> list) {
+        var tarr = list.toArray();
+        for (var t : tarr) {
+            System.out.printf("%s ", t);
+        }
+        System.out.println();
+    }
+
+    public static <T> void printLinkedListWithIterator(LinkedList<T> list) {
+        LinkedListIterator<T> iter = new LinkedListIterator<>(list);
+        while (iter.hasNext()) {
+            System.out.printf("%s ", iter.next());
         }
         System.out.println();
     }
