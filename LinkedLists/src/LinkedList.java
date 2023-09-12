@@ -64,10 +64,10 @@ public class LinkedList<E> {
             oneBefore = oneBefore.getNext();
             if (oneBefore.getValue().equals(e)) {
                 this.remove(this.indexOf(e));
+                this.size--;
                 return true;
             }
         }
-        this.size--;
         return true;
     }
 
