@@ -1,5 +1,5 @@
 public class DoublyLinkedList<E> implements ListAbstractType<E> {
-    class Node<E> {
+    static class Node<E> {
         private E data;
         private Node<E> next;
         private Node<E> prev;
@@ -46,15 +46,17 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
             this.prev = newPrev;
         }
     }
-    class Iterator<E> implements TwoWayListIterator<E> {
+    static class Iterator<E> implements TwoWayListIterator<E> {
         private Node<E> prev;
         private Node<E> next;
         private int index;
+        private int lastOp;  // +1 next, -1 prev, 0 invalid
 
         public Iterator() {
             prev = null;
             next = null;
             index = 0;
+            lastOp = 0;
         }
 
         public boolean hasPrevious() {
@@ -70,6 +72,7 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
             this.next = this.prev;
             this.prev = this.prev.getPrev();
             this.index--;
+            this.lastOp = -1;
             return ret;
         }
 
@@ -78,6 +81,7 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
             this.prev = this.next;
             this.next = this.next.getNext();
             this.index++;
+            this.lastOp = +1;
             return ret;
         }
 
@@ -87,14 +91,22 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
             origPrev.setNext(toInsert);
             this.prev = toInsert;
             this.index++;
+            this.lastOp = 0;
         }
 
         public void set(E e) {
-            // ?
+            if (this.lastOp == +1) {
+                this.prev.setValue(e);
+            } else if (this.lastOp == -1) {
+                this.next.setValue(e);
+            } else {
+                throw new IllegalStateException("Last method called by iterator must be either next or previous!");
+            }
         }
 
         public void remove() {
             // ?
+            this.lastOp = 0;
         }
 
         public int getIndex() {
@@ -156,9 +168,47 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
         }
     }
 
+    public void add(int idx, E e) {
+        if (idx < it.getIndex()) {
+            while (it.getIndex() != idx) {
+                it.previous();
+            }
+            it.set(e);
+        } else {
+            while (it.getIndex() != idx) {
+                it.next();
+            }
+            it.set(e);
+        }
+    }
+
+    public boolean add(E e) {
+        return true;
+    }
+
+    public boolean remove(E e) {
+        return true;
+    }
+
+    public int size() {
+        return 0;
+    }
+
+    public boolean isEmpty() {
+        return this.head.next == null;
+    }
+
+    public boolean contains(E e) {
+        return false;
+    }
+
+    public DoublyLinkedList.Iterator<E> iterator() {
+        return this.it;
+    }
+
     @Override
     public String toString() {
-        Iterator<E> it = this.iterator();  // ?
+        var it = this.iterator();
         if (!it.hasNext())
             return "[]";
         StringBuilder builder = new StringBuilder("[");
