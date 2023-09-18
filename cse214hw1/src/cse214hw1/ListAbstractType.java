@@ -1,4 +1,4 @@
-// package cse214hw1;
+package cse214hw1;
 
 /**
  * DO NOT MODIFY THIS CODE!!

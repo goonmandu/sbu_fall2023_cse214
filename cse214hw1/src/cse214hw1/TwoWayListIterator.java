@@ -1,3 +1,5 @@
+package cse214hw1;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 /**

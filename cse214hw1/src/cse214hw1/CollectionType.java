@@ -1,3 +1,5 @@
+package cse214hw1;
+
 /**
 * DO NOT MODIFY THIS CODE!!
 * @author Ritwik Banerjee
