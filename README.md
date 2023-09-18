@@ -18,7 +18,7 @@ I bear **NO RESPONSIBILITY** to your being found of cheating or any other conseq
 Use online resources responsibly.
 
 # Acknowledgements
-- Some files/classes have been provided by the course instructors, and their names have been credited in the Javadoc for any relevant files.
-  - Homework 1: Dr. Ritwik Banerjee
+Some files/classes have been provided by the course instructors, and their names have been credited in the Javadoc for any relevant files.
+- Homework 1: Dr. Ritwik Banerjee
 
 **For non-original code, I do not know the license under which these source files are published, and therefore would not recommend reproduction.**
