@@ -16,3 +16,9 @@ If found responsible, you **WILL** get a **Q** or an **F** as your final grade (
 I bear **NO RESPONSIBILITY** to your being found of cheating or any other consequence arising from your use of my code. This repository is for personal archival purposes, not to share my answers with other people.
 
 Use online resources responsibly.
+
+# Acknowledgements
+- Some files/classes have been provided by the course instructors, and their names have been credited in the Javadoc for any relevant files.
+  - Homework 1: Dr. Ritwik Banerjee
+
+**For non-original code, I do not know the license under which these source files are published, and therefore would not recommend reproduction.**
