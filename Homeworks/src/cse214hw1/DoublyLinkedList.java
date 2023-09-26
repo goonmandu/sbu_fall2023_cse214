@@ -91,8 +91,9 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
             this.lastOp = 0;
             this.index++;
             Node<E> origPrev = this.prev;
-            if (origPrev == null) {
-                this.prev = new Node<>(null, e, null);
+            if (this.prev == null) {
+                this.prev = this.next;
+                this.next = new Node<>(this.prev, e, this.next);
                 return;
             }
             Node<E> toInsert = new Node<>(origPrev, e, this.next);
@@ -127,7 +128,9 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
     public DoublyLinkedList() {
         head = new Node<>();
         tail = new Node<>();
-        it = new Iterator<>(null, tail);
+        head.setNext(tail);
+        tail.setPrev(head);
+        it = new Iterator<>(null, head);
     }
 
     public E get(int idx) {
@@ -179,12 +182,12 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
             while (it.getIndex() != idx) {
                 it.previous();
             }
-            it.set(e);
+            it.add(e);
         } else {
             while (it.getIndex() != idx) {
                 it.next();
             }
-            it.set(e);
+            it.add(e);
         }
     }
 
@@ -205,7 +208,7 @@ public class DoublyLinkedList<E> implements ListAbstractType<E> {
     }
 
     public boolean isEmpty() {
-        return this.head.next == null;
+        return this.tail.next == null;
     }
 
     public boolean contains(E e) {
